@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>اختبار 13.6.6 – الضوء</title>
+<style>
+:root{--bg:#f6f4ee;--cd:#fff;--tx:#1f2937;--mu:#6b7280;--ac:#b7791f;--ok:#16794c;--okb:#dcf5e8;--no:#b42318;--nob:#fde4e1;--bd:#e5e1d5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0)}
+@media(prefers-color-scheme:dark){:root{--bg:#15130f;--cd:#1f1c16;--tx:#f1ece0;--mu:#a39d8e;--ac:#f5b82e;--ok:#6ee7a8;--okb:#12382a;--no:#fca5a5;--nob:#3f1a17;--bd:#3a352a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;line-height:1.7}
+.w{max-width:860px;margin:0 auto;padding:16px}h1{font-size:1.3rem;color:var(--ac);margin:8px 0}h2{font-size:1.05rem;margin:14px 0 6px}
+.c{background:var(--cd);border:1px solid var(--bd);border-radius:16px;padding:18px;margin-top:12px}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.mu{color:var(--mu);font-size:.9rem}.er{color:var(--no);font-weight:700}
+input{display:block;width:100%;font:inherit;color:var(--tx);background:var(--bg);border:2px solid var(--bd);border-radius:12px;padding:10px 12px;margin:6px 0 10px}
+.b{font:inherit;font-weight:700;background:var(--ac);color:#fff;border:0;border-radius:12px;padding:10px 18px;cursor:pointer;margin:4px 0}
+.b.s{background:var(--cd);color:var(--tx);border:2px solid var(--bd)}
+.o{display:block;width:100%;text-align:right;font:inherit;color:inherit;background:var(--bg);border:2px solid var(--bd);border-radius:12px;padding:10px 12px;margin:6px 0;cursor:pointer}
+.o.sel{border-color:var(--ac);background:var(--cd);font-weight:700}
+.q{font-weight:700;margin-top:6px}.fb{background:var(--nob);border-radius:12px;padding:10px;margin:8px 0}.fb b{color:var(--ok)}.fb span{color:var(--no)}
+.sp{display:flex;align-items:flex-end;gap:3px;height:40px}.sp i{display:block;width:14px;background:var(--ac);border-radius:3px 3px 0 0;min-height:2px}
+table{width:100%;border-collapse:collapse;font-size:.9rem}th,td{border-bottom:1px solid var(--bd);padding:6px;text-align:center}
+.p{padding:2px 8px;border-radius:8px;font-weight:700}.hi{background:var(--okb);color:var(--ok)}.lo{background:var(--nob);color:var(--no)}.md{background:var(--bd)}
+.tp{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+</style></head><body><div class="w" id="app"></div>
+<script>
+const ADMIN={u:"admin",p:"Admin@123"}; // غيّر بيانات دخول المشرف من هنا
+const IND=["طبيعة الضوء الموجية وخصائصه","الانعكاس والانكسار وتطبيقاتهما","المرايا والعدسات وتكوّن الصور","التداخل والحيود والاستقطاب"];
+const RAW=`الضوء موجة|كهرومغناطيسية مستعرضة|ميكانيكية طولية|ميكانيكية مستعرضة|صوتية|الضوء موجة كهرومغناطيسية مستعرضة ولا تحتاج وسطًا مادّيًا.
+سرعة الضوء في الفراغ تقريبًا|3×10⁸ m/s|3×10⁶ m/s|340 m/s|3×10¹⁰ m/s|سرعة الضوء في الفراغ c ≈ 3×10⁸ m/s.
+ينتقل الضوء في|الفراغ والأوساط الشفافة|الأوساط المادية فقط|الفراغ فقط|الأوساط الصلبة فقط|الموجات الكهرومغناطيسية لا تحتاج إلى وسط.
+العلاقة بين سرعة الضوء وتردده وطوله الموجي|c = fλ|c = f/λ|c = λ/f|c = f + λ|سرعة الموجة = التردد × الطول الموجي.
+طول موجة ضوء ترده 5×10¹⁴ Hz (c = 3×10⁸ m/s)|6×10⁻⁷ m|1.5×10⁷ m|6×10⁷ m|1.67×10⁻⁶ m|λ = c/f = 3×10⁸ ÷ 5×10¹⁴ = 6×10⁻⁷ m.
+عند انتقال الضوء من الهواء إلى الزجاج تبقى ثابتة|التردد|السرعة|الطول الموجي|الاتجاه دائمًا|التردد يحدده المصدر ولا يتغير بتغير الوسط.
+أي ألوان الضوء المرئي له أطول طول موجي؟|الأحمر|البنفسجي|الأخضر|الأزرق|الأحمر أطول طول موجي والبنفسجي أقصره في الضوء المرئي.
+أي الإشعاعات التالية ترددها أكبر؟|أشعة جاما|الموجات الراديوية|الميكروويف|الضوء المرئي|يزداد التردد من الراديو إلى أشعة جاما.
+الضوء الأبيض|مزيج من ألوان الطيف|لون واحد|أشعة تحت حمراء فقط|أشعة فوق بنفسجية فقط|يتكون الضوء الأبيض من ألوان الطيف المرئي مجتمعة.
+عند الابتعاد عن مصدر ضوئي نقطي تقل شدة الإضاءة|بمربع المسافة|بالمسافة نفسها|بمكعب المسافة|لا تتغير|الإضاءة تتناسب عكسيًا مع مربع المسافة (E ∝ 1/r²).
+ينص قانون الانعكاس على أن زاوية السقوط|تساوي زاوية الانعكاس|ضعف زاوية الانعكاس|نصف زاوية الانعكاس|تكمل زاوية الانعكاس إلى 180°|θi = θr.
+تقاس زاويتا السقوط والانعكاس من|العمود المقام على السطح|السطح نفسه|الشعاع المنكسر|الحافة|تقاس الزوايا من العمود عند نقطة السقوط.
+يحدث الانعكاس المنتظم على سطح|أملس|خشن|مائل فقط|معتم فقط|السطح الأملس يعكس الأشعة المتوازية متوازية.
+الانكسار هو|تغير اتجاه الضوء عند انتقاله بين وسطين|ارتداد الضوء عن السطح|امتصاص الضوء|تحلل الضوء|سببه اختلاف سرعة الضوء بين الوسطين.
+معامل الانكسار n =|c/v|v/c|c × v|c − v|n = سرعة الضوء في الفراغ ÷ سرعته في الوسط.
+معامل انكسار الماء 1.33؛ سرعة الضوء فيه تقريبًا|2.26×10⁸ m/s|3×10⁸ m/s|4×10⁸ m/s|1.33×10⁸ m/s|v = c/n = 3×10⁸ ÷ 1.33 ≈ 2.26×10⁸ m/s.
+ينكسر الشعاع مقتربًا من العمود عند انتقاله من|الهواء إلى الزجاج|الزجاج إلى الهواء|الماء إلى الهواء|الزجاج إلى الفراغ|عند الدخول إلى وسط أكبر في معامل الانكسار تقل السرعة فيقترب الشعاع من العمود.
+قانون سنل|n1 sinθ1 = n2 sinθ2|n1 θ1 = n2 θ2|n1 cosθ1 = n2 cosθ2|sinθ1 = sinθ2 دائمًا|ينص على أن n1 sinθ1 = n2 sinθ2.
+يحدث الانعكاس الكلي الداخلي عند انتقال الضوء من وسط|أكبر معامل انكسار إلى أقل|أقل معامل انكسار إلى أكبر|هواء إلى ماء|أي وسط إلى أي وسط|يشترط الانتقال من وسط معامله أكبر إلى أقل وزاوية سقوط أكبر من الحرجة.
+من تطبيقات الانعكاس الكلي الداخلي|الألياف الضوئية|المرآة المستوية|الظل|العدسة اللاصقة فقط|ينتقل الضوء داخل الليف الضوئي بانعكاسات كلية متتالية.
+قانون المرايا والعدسات الرقيقة|1/f = 1/do + 1/di|f = do + di|1/f = do + di|f = do × di|معادلة المرايا والعدسات: مقلوب البعد البؤري = مجموع مقلوبي بعدي الجسم والصورة.
+البعد البؤري للمرآة الكروية يساوي|R/2|2R|R|R²|البعد البؤري = نصف قطر التكور ÷ 2.
+الصورة في المرآة المستوية|وهمية معتدلة مساوية للجسم|حقيقية مقلوبة|وهمية مصغرة|حقيقية مكبرة|تتكون خلف المرآة بالبعد نفسه ومساوية للجسم.
+المرآة المقعرة تكوّن صورة وهمية معتدلة مكبرة عندما يكون الجسم|بين البؤرة والمرآة|بعد مركز التكور|عند مركز التكور|على مسافة لا نهائية|مثل مرآة الحلاقة؛ يقع الجسم داخل البعد البؤري.
+المرآة المحدبة تكوّن صورة دائمًا|وهمية معتدلة مصغرة|حقيقية مقلوبة|حقيقية مكبرة|وهمية مكبرة|تُستخدم في مرايا الرؤية الخلفية لاتساع مجال الرؤية.
+العدسة المحدبة|مجمّعة للأشعة|مفرّقة للأشعة|لا تكسر الأشعة|عاكسة للأشعة|تجمع الأشعة المتوازية في بؤرتها.
+العدسة المقعرة تكوّن صورة|وهمية معتدلة مصغرة|حقيقية مقلوبة|حقيقية مكبرة|وهمية مكبرة|العدسة المقعرة مفرّقة فتكوّن صورة وهمية مصغرة دائمًا.
+جسم على بعد 30 cm من عدسة محدبة بعدها البؤري 10 cm؛ بعد الصورة|15 cm|20 cm|30 cm|7.5 cm|1/di = 1/10 − 1/30 = 2/30 فتكون di = 15 cm.
+جسم على بعد 20 cm من مرآة مقعرة بعدها البؤري 10 cm؛ بعد الصورة|20 cm|10 cm|40 cm|5 cm|1/di = 1/10 − 1/20 = 1/20 فتكون di = 20 cm.
+التكبير M =|−di/do|di × do|do/di|di + do|التكبير = −(بعد الصورة ÷ بعد الجسم).
+تثبت تجربة يانغ ذات الشق المزدوج|الطبيعة الموجية للضوء|الطبيعة الجسيمية|انعكاس الضوء|سرعة الضوء|ظهور أهداب التداخل دليل على الطبيعة الموجية.
+الأهداب المضيئة في تجربة يانغ تنتج من|تداخل بناء|تداخل هدام|انعكاس|امتصاص|عند تلاقي قمتين أو قاعين تتعزز السعة فتظهر أهداب مضيئة.
+الأهداب المعتمة في تجربة يانغ تنتج من|تداخل هدام|تداخل بناء|استقطاب|انعكاس كلي|تلاقي قمة مع قاع يلغي أحدهما الآخر فتظهر أهداب معتمة.
+يحدث التداخل البناء عندما يكون فرق المسير|عددًا صحيحًا من الطول الموجي (nλ)|عددًا فرديًا من أنصاف الطول الموجي|ربع الطول الموجي فقط|لا علاقة له بالطول الموجي|يتحقق التداخل البناء عند فرق مسير = nλ.
+الحيود هو|انحناء الضوء حول الحواف والفتحات|ارتداد الضوء|امتصاص الضوء|انكسار الضوء بين وسطين|ينحني الضوء وينتشر عند مروره بحافة أو فتحة.
+يكون حيود الضوء أوضح عندما عرض الفتحة|قريبًا من الطول الموجي|أكبر كثيرًا من الطول الموجي|متر واحد|لا يؤثر في الحيود|كلما اقترب عرض الفتحة من الطول الموجي زاد الحيود.
+يدل استقطاب الضوء على أنه موجة|مستعرضة|طولية|ميكانيكية|صوتية|الموجات الطولية لا يمكن استقطابها.
+تُستخدم النظارات الشمسية المستقطبة لـ|تقليل وهج الضوء المنعكس|زيادة الوهج|تكبير الأشياء|تغيير ألوانها|ترشح الضوء المستقطب أفقيًا الناتج عن الانعكاس عن الأسطح.
+تفريق الضوء الأبيض بالمنشور سببه|اختلاف معامل الانكسار باختلاف الطول الموجي|امتصاص بعض الألوان|الاستقطاب|الانعكاس الكلي الداخلي|لكل لون معامل انكسار مختلف فتنكسر الألوان بزوايا مختلفة.
+من تطبيقات تداخل الضوء|الطلاء المضاد للانعكاس على العدسات|المرآة المستوية|الظل|المصباح اليدوي|الطبقات الرقيقة تُحدث تداخلًا هدامًا للضوء المنعكس فتقلل الانعكاس.`;
+const B=RAW.trim().split("\n").map((l,i)=>{const p=l.split("|");return{id:i,k:Math.floor(i/10),q:p[0],a:p[1],o:p.slice(1,5),e:p[5]}});
+const KEY="wq1366";let mem={};try{mem=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mem))}catch(e){}};
+const $=x=>document.getElementById(x),app=$("app"),sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const cls=p=>p>=80?"hi":p>=60?"md":"lo",pill=p=>p==null?"—":`<span class="p ${cls(p)}">${p}%</span>`;
+const att=(id,k)=>(mem[id]||[]).filter(a=>a.k===k).sort((x,y)=>x.t-y.t);
+const trend=l=>l.length<2?"":(d=>d>0?`<span style="color:var(--ok)">▲ +${d}</span>`:d<0?`<span style="color:var(--no)">▼ ${d}</span>`:"＝")((l[l.length-1].s-l[0].s)*10);
+const spark=l=>`<div class="sp">${l.slice(-10).map(a=>`<i title="${a.s*10}%" style="height:${a.s*10}%"></i>`).join("")}</div>`;
+let me=null,cur=null,ans={};
+function login(msg){
+ app.innerHTML=`<h1>اختبار 13.6.6 – مبادئ الضوء ومفاهيمه</h1><div class="c"><b>دخول الطالب</b><p class="mu">أدخل رقم الهوية/الإقامة. إن سبق أن دخلت به فسيُحمَّل تقدمك لتكمل باقي المؤشرات.</p><input id="id" inputmode="numeric" placeholder="رقم الهوية / الإقامة"><div class="er" id="er">${msg||""}</div><button class="b" id="go">دخول</button> <button class="b s" id="ad">دخول المشرف</button></div>`;
+ $("go").onclick=()=>{const d=$("id").value.trim().replace(/[٠-٩]/g,c=>"٠١٢٣٤٥٦٧٨٩".indexOf(c));if(!/^\d{10}$/.test(d))return $("er").textContent="رقم الهوية/الإقامة يتكون من 10 أرقام";me=d;if(!mem[d]){mem[d]=[];save()}home()};
+ $("ad").onclick=adminLogin;
+}
+function home(){
+ app.innerHTML=`<div class="tp"><h1>مرحبًا، ${me}</h1><span><button class="b s" id="ex">تصدير تقدمي</button> <button class="b s" id="out">خروج</button></span></div>
+ <p class="mu">اختر المؤشر الذي تريد التدريب عليه (10 أسئلة). يمكنك إعادة أي مؤشر لتحسين مستواك، وتظهر التغذية الراجعة بعد التسليم.</p>
+ <div class="g">${IND.map((n,k)=>{const l=att(me,k),last=l.length?l[l.length-1].s*10:null,best=l.length?Math.max(...l.map(a=>a.s))*10:null;
+ return `<div class="c"><b>م${k+1}: ${n}</b><p class="mu">المحاولات: ${l.length} | الأفضل: ${pill(best)} | الأخيرة: ${pill(last)} ${trend(l)}</p>${l.length?spark(l):""}<button class="b" onclick="startT(${k})">${l.length?"تدرّب مجددًا":"ابدأ"}</button></div>`}).join("")}</div>
+ <div class="c"><b>تطور مستواك</b>${(mem[me]||[]).length?`<table><tr><th>التاريخ</th><th>المؤشر</th><th>الدرجة</th></tr>${[...mem[me]].sort((a,b)=>b.t-a.t).slice(0,15).map(a=>`<tr><td>${new Date(a.t).toLocaleDateString("ar-SA")}</td><td>م${a.k+1}</td><td>${pill(a.s*10)}</td></tr>`).join("")}</table>`:'<p class="mu">لا توجد محاولات بعد.</p>'}</div>`;
+ $("out").onclick=()=>login();$("ex").onclick=()=>dl("progress-"+me+".json",JSON.stringify({[me]:mem[me]||[]}));
+}
+function dl(n,t){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"application/json"}));a.download=n;a.click()}
+function startT(k){cur=k;ans={};const qs=B.filter(b=>b.k===k).map(b=>({...b,o:sh(b.o)}));window.QS=sh(qs);render()}
+function render(){
+ app.innerHTML=`<div class="tp"><h1>م${cur+1}: ${IND[cur]}</h1><button class="b s" onclick="home()">رجوع</button></div>${QS.map((q,i)=>`<div class="c"><div class="q">${i+1}) ${q.q}</div>${q.o.map((t,j)=>`<button class="o ${ans[q.id]===t?"sel":""}" onclick="pk(${q.id},${i},${j})">${t}</button>`).join("")}</div>`).join("")}<div class="c"><p class="mu">أجبت عن ${Object.keys(ans).length} من ${QS.length}</p><button class="b" onclick="submit()">تسليم الاختبار</button></div>`;
+}
+function pk(id,i,j){const y=scrollY;ans[id]=QS[i].o[j];render();scrollTo(0,y)}
+function submit(){
+ const n=QS.length-Object.keys(ans).length;if(n&&!confirm(`لديك ${n} سؤال بلا إجابة وستُحتسب خاطئة. تسليم؟`))return;
+ const w=QS.filter(q=>ans[q.id]!==q.a).map(q=>[q.id,ans[q.id]||""]),s=QS.length-w.length;
+ mem[me].push({k:cur,s,t:Date.now(),w});save();result(s,w,cur);
+}
+function result(s,w,k){
+ const l=att(me,k),prev=l.length>1?l[l.length-2].s*10:null;
+ app.innerHTML=`<h1>نتيجة م${k+1}</h1><div class="c" style="text-align:center"><div style="font-size:2.4rem;font-weight:800;color:var(--ac)">${s} / 10</div><p>${pill(s*10)} ${prev!=null?`— المحاولة السابقة ${prev}% ${s*10>prev?"▲ تحسّن":s*10<prev?"▼ تراجع":"＝"}`:""}</p><button class="b" onclick="home()">العودة للمؤشرات</button> <button class="b s" onclick="startT(${k})">إعادة المؤشر</button></div>
+ ${w.length?`<div class="c"><b>التغذية الراجعة (${w.length})</b>${w.map(([id,y])=>{const q=B[id];return `<div class="fb">${q.q}<br>إجابتك: <span>${y||"لم تُجب"}</span><br>الصحيحة: <b>${q.a}</b><br><small>${q.e}</small></div>`}).join("")}</div>`:'<div class="c">أحسنت! جميع إجاباتك صحيحة 🌟</div>'}`;
+ scrollTo(0,0);
+}
+function adminLogin(){
+ app.innerHTML=`<h1>دخول المشرف</h1><div class="c"><input id="u" placeholder="المعرّف (ID)"><input id="p" type="password" placeholder="كلمة المرور"><div class="er" id="er"></div><button class="b" id="go">دخول</button> <button class="b s" onclick="login()">رجوع</button></div>`;
+ $("go").onclick=()=>$("u").value===ADMIN.u&&$("p").value===ADMIN.p?admin():$("er").textContent="بيانات غير صحيحة";
+}
+function merge(o){let n=0;for(const id in o){mem[id]=mem[id]||[];const ts=new Set(mem[id].map(a=>a.t));o[id].forEach(a=>{if(!ts.has(a.t)){mem[id].push(a);n++}})}save();return n}
+function admin(note){
+ const ids=Object.keys(mem).filter(i=>mem[i].length),all=ids.flatMap(i=>mem[i]);
+ const lastP=(id,k)=>{const l=att(id,k);return l.length?l[l.length-1].s*10:null};
+ const avg=a=>a.length?Math.round(a.reduce((x,y)=>x+y,0)/a.length):null;
+ const miss={};all.forEach(a=>a.w.forEach(([q])=>miss[q]=(miss[q]||0)+1));
+ const top=Object.entries(miss).sort((a,b)=>b[1]-a[1]).slice(0,8);
+ app.innerHTML=`<div class="tp"><h1>لوحة المشرف</h1><button class="b s" onclick="login()">خروج</button></div>
+ <div class="c"><b>استيراد ملفات تقدم الطلاب</b><p class="mu">كل جهاز يحفظ بياناته محليًا؛ اجمع ملفات «تصدير تقدمي» من الطلاب واستوردها هنا (يمكن تحديد عدة ملفات). ${note||""}</p><input type="file" id="fl" accept=".json" multiple> <button class="b s" id="exa">تصدير كل البيانات</button></div>
+ <div class="c"><b>ملخص</b><p>الطلاب: ${ids.length} | المحاولات: ${all.length}</p><div class="g">${IND.map((n,k)=>`<div>م${k+1} ${n}<br>متوسط آخر محاولة: ${pill(avg(ids.map(i=>lastP(i,k)).filter(x=>x!=null)))}</div>`).join("")}</div></div>
+ <div class="c" style="overflow-x:auto"><b>نتائج الطلاب وتطورهم</b>${ids.length?`<table><tr><th>الهوية</th>${IND.map((_,k)=>`<th>م${k+1}</th>`).join("")}<th>المتوسط</th><th>أضعف مؤشر</th></tr>${ids.map(id=>{const v=IND.map((_,k)=>lastP(id,k)),ok=v.filter(x=>x!=null),wk=ok.length?v.indexOf(Math.min(...ok)):-1;return `<tr><td>${id}</td>${v.map((x,k)=>`<td>${pill(x)}<br>${trend(att(id,k))}</td>`).join("")}<td>${pill(avg(ok))}</td><td>${wk>=0?"م"+(wk+1):"—"}</td></tr>`}).join("")}</table><p class="mu">▲▼ = الفرق بين أول محاولة وآخر محاولة في المؤشر.</p>`:'<p class="mu">لا توجد بيانات بعد.</p>'}</div>
+ <div class="c"><b>أكثر الأسئلة خطأً</b>${top.length?top.map(([q,n])=>`<div class="r" style="padding:6px 0;border-bottom:1px solid var(--bd)">[م${B[q].k+1}] ${B[q].q} — <span class="er">${n} خطأ</span></div>`).join(""):'<p class="mu">لا توجد بيانات.</p>'}</div>`;
+ $("fl").onchange=async e=>{let n=0;for(const f of e.target.files){try{n+=merge(JSON.parse(await f.text()))}catch(x){}}admin(`تم استيراد ${n} محاولة جديدة.`)};
+ $("exa").onclick=()=>dl("all-progress.json",JSON.stringify(mem));
+}
+login();
+</script></body></html>
